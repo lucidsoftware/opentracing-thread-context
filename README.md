@@ -1,4 +1,4 @@
-# Opentracing thread-local propogation
+# Opentracing thread-local propagation
 
 [![Build Status](https://travis-ci.org/lucidsoftware/opentracing-thread-context.svg?branch=master)](https://travis-ci.org/lucidsoftware/opentracing-thread-context)
 ![Maven Version](https://img.shields.io/maven-central/v/com.lucidchart/opentracing-thread-context.svg)
@@ -12,6 +12,7 @@ import io.opentracing.Span;
 import io.opentracing.threadcontext.ThreadContextSpan;
 
 Span span = ...
-ThreadContextSpan.set(span)
-ThreadContextSpan.get();
+ThreadContextSpan.withSpan(span, () -> {
+    ThreadContextSpan.get(); // current Span
+});
 ```

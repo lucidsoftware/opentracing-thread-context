@@ -1,5 +1,6 @@
 package io.opentracing.threadcontext;
 
+import com.github.threadcontext.Saver;
 import com.github.threadcontext.ThreadContext;
 import com.github.threadcontext.ThreadLocalSaver;
 import io.opentracing.NoopSpan;
@@ -13,8 +14,9 @@ public final class ThreadContextSpan {
             return defaultSpan.get();
         }
     };
+    private static final Saver saver = new ThreadLocalSaver<>(span);
     static {
-        ThreadContext.savers.add(new ThreadLocalSaver<>(span));
+        ThreadContext.savers.add(saver);
     }
 
     public static Supplier<Span> defaultSpan = () -> NoopSpan.INSTANCE;
@@ -26,12 +28,11 @@ public final class ThreadContextSpan {
         return span.get();
     }
 
-    public static void set(Span span) {
-        ThreadContextSpan.span.set(span);
-    }
-
-    public static void clear() {
-        span.remove();
+    public static void withSpan(Span span, Runnable runnable) {
+        saver.runAndRestore(() -> {
+            ThreadContextSpan.span.set(span);
+            runnable.run();
+        });
     }
 
 }
