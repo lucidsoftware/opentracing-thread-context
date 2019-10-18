@@ -8,6 +8,7 @@ inScope(Global)(Seq(
     sys.env.getOrElse("SONATYPE_USERNAME", ""),
     sys.env.getOrElse("SONATYPE_PASSWORD", "")
   ),
+  usePgpKeyHex("F76A34B7F9338AC82141DD372456B4E851B8B360"),
   crossPaths := false,
   developers += Developer("pauldraper", "Paul Draper", "paulddraper@gmail.com", url("https://github.com/pauldraper")),
   homepage := Some(url("https://git.lucidchart.com/lucidsoftware/opentracing-thread-context")),
@@ -15,7 +16,6 @@ inScope(Global)(Seq(
   organization := "com.lucidchart",
   organizationHomepage := Some(url("https://github.com/lucidsoftware")),
   organizationName := "Lucid Software",
-  PgpKeys.pgpPassphrase := Some(Array.emptyCharArray),
   resolvers += Resolver.typesafeRepo("releases"),
   scmInfo := Some(ScmInfo(
     url("https://github.com/lucidsoftware/opentracing-thread-context"),
@@ -23,4 +23,5 @@ inScope(Global)(Seq(
   )),
   startYear := Some(2017),
   version := sys.props.getOrElse("build.version", "0-SNAPSHOT")
+  publishTo := sonatypePublishToBundle.value
 ))
