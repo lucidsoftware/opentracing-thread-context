@@ -1,6 +1,6 @@
 # Opentracing thread-local propagation
 
-[![Build Status](https://travis-ci.org/lucidsoftware/opentracing-thread-context.svg?branch=master)](https://travis-ci.org/lucidsoftware/opentracing-thread-context)
+[![Build Status](https://travis-ci.com/lucidsoftware/opentracing-thread-context.svg?branch=master)](https://travis-ci.com/lucidsoftware/opentracing-thread-context)
 ![Maven Version](https://img.shields.io/maven-central/v/com.lucidchart/opentracing-thread-context.svg)
 
 In-process thread-local propagation of spans.
