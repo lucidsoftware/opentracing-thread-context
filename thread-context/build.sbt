@@ -6,3 +6,4 @@ libraryDependencies ++= Seq(
 )
 
 name := s"opentracing-${name.value}"
+publishTo := sonatypePublishToBundle.value
